@@ -1,18 +1,18 @@
-name: Deploy to Azure App Service
+name: Deploy via Kudu API
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-    environment: production
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
+<<<<<<< HEAD
     - name: Debug - List all files
       run: |
         echo "📁 Project structure:"
@@ -53,3 +53,14 @@ jobs:
       run: |
         echo "✅ Deployment attempted"
         echo "Check https://hamzamir-resume-app-gzgwc0d9f2csexgt.azurewebsites.net"
+=======
+    - name: Zip project files
+      run: zip -r deployment.zip . -x "*.git*" "*.github*" ".venv/*"
+
+    - name: Deploy to Azure via Kudu
+      run: |
+        curl -X POST \
+          -u '$hamzamir-resume-app-gzgwc0d9f2csexgt:${{ secrets.FTP_PASSWORD }}' \
+          https://hamzamir-resume-app-gzgwc0d9f2csexgt.scm.azurewebsites.net/api/zipdeploy \
+          --data-binary @deployment.zip
+>>>>>>> 34241762a7f65891109211754af8eb882fab4a3d
