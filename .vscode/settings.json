@@ -1,0 +1,15 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "azureFunctions.deploySubpath": ".",
+    "azureFunctions.scmDoBuildDuringDeployment": true,
+    "azureFunctions.pythonVenv": ".venv",
+    "azureFunctions.projectLanguage": "Python",
+    "azureFunctions.projectRuntime": "~4",
+    "debug.internalConsoleOptions": "neverOpen",
+    "azureFunctions.projectLanguageModel": 2,
+    "appService.defaultWebAppToDeploy": "/subscriptions/f2e9dc01-559e-43d1-98f7-d5370c324703/resourceGroups/hamzamir-resume-app_group/providers/Microsoft.Web/sites/hamzamir-resume-app",
+    "appService.deploySubpath": "."
+}

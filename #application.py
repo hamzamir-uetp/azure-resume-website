@@ -1,0 +1,5 @@
+# application.py - Azure looks for this file
+from api.app import app as application
+
+if __name__ == '__main__':
+    application.run()

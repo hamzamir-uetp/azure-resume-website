@@ -1,0 +1,2 @@
+# This tells Azure not to try auto-detecting Python, since we're using HTML + Python
+# Just create an empty file with this name

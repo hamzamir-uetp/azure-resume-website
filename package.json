@@ -1,0 +1,8 @@
+{
+  "name": "resume-website",
+  "version": "1.0.0",
+  "description": "Personal resume website",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
