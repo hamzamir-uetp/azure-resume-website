@@ -3,8 +3,6 @@ name: Deploy to Azure App Service
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build-and-deploy:
@@ -15,29 +13,43 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
-        
-    - name: Install dependencies
+    - name: Debug - List all files
       run: |
-        python -m pip install --upgrade pip
-        pip install flask==2.3.0 flask-cors==4.0.0 gunicorn==21.2.0
-
-    - name: List files (for debugging)
-      run: |
+        echo "📁 Project structure:"
         ls -la
-        echo "API folder contents:"
+        echo "📁 API content:"
         ls -la api/ || echo "No API folder"
+        echo "📁 GitHub folder:"
+        ls -la .github/ || echo "No .github folder"
 
-    - name: Deploy to Azure Web App
-      uses: azure/webapps-deploy@v2
+    - name: Create zip package
+      run: |
+        zip -r deployment.zip . -x ".git/*" ".github/*" ".venv/*" "__pycache__/*" "*.gitignore"
+
+    - name: Debug - Show zip contents
+      run: |
+        echo "📦 Zip file contents:"
+        unzip -l deployment.zip | head -20
+
+    - name: Setup Azure CLI
+      uses: azure/login@v1
       with:
-        app-name: 'hamzamir-resume-app-gzgwc0d9f2csexgt'
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Debug - List Azure Web Apps
+      run: |
+        echo "🌐 Your Azure Web Apps:"
+        az webapp list --query "[].{Name:name, State:state}" --output table
+
+    - name: Deploy using Azure CLI
+      run: |
+        az webapp deploy \
+          --name hamzamir-resume-app-gzgwc0d9f2csexgt \
+          --resource-group $(az webapp show --name hamzamir-resume-app-gzgwc0d9f2csexgt --query resourceGroup -o tsv) \
+          --src-path deployment.zip \
+          --type zip
+
     - name: Verify deployment
       run: |
-        echo "🎉 Deployment completed successfully!"
-        echo "Your site is live at: https://hamzamir-resume-app-gzgwc0d9f2csexgt.eastasia-01.azurewebsites.net"
+        echo "✅ Deployment attempted"
+        echo "Check https://hamzamir-resume-app-gzgwc0d9f2csexgt.azurewebsites.net"
