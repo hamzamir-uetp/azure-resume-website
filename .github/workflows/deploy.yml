@@ -1,45 +1,23 @@
-name: Deploy to Azure App Service
+name: Deploy via Kudu API
 
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-    environment: production
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Setup Python (for any Python dependencies)
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
-        
-    - name: Install Python dependencies
-      run: |
-        pip install flask==2.3.0 flask-cors==4.0.0
-        echo "Dependencies installed"
+    - name: Zip project files
+      run: zip -r deployment.zip . -x "*.git*" "*.github*" ".venv/*"
 
-    - name: Create deployment package
+    - name: Deploy to Azure via Kudu
       run: |
-        echo "Creating deployment package..."
-        # Create a zip file of the entire project
-        zip -r deployment.zip . -x "*.git*" "*.github*" ".venv/*" "__pycache__/*"
-
-    - name: Deploy to Azure App Service using Zip Deploy
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'hamzamir-resume-app-gzgwc0d9f2csexgt'
-        publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-        package: 'deployment.zip'
-        
-    - name: Verify deployment
-      run: |
-        echo "🎉 Deployment completed successfully!"
-        echo "🌐 Your site: https://hamzamir-resume-app-gzgwc0d9f2csexgt.eastasia-01.azurewebsites.net"
-        echo "⏰ Changes may take 1-2 minutes to appear"
+        curl -X POST \
+          -u '$hamzamir-resume-app-gzgwc0d9f2csexgt:${{ secrets.FTP_PASSWORD }}' \
+          https://hamzamir-resume-app-gzgwc0d9f2csexgt.scm.azurewebsites.net/api/zipdeploy \
+          --data-binary @deployment.zip
