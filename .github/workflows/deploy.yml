@@ -1,66 +1,50 @@
-name: Deploy via Kudu API
+name: Deploy to Azure App Service
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    environment: production
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
-<<<<<<< HEAD
-    - name: Debug - List all files
-      run: |
-        echo "📁 Project structure:"
-        ls -la
-        echo "📁 API content:"
-        ls -la api/ || echo "No API folder"
-        echo "📁 GitHub folder:"
-        ls -la .github/ || echo "No .github folder"
-
-    - name: Create zip package
-      run: |
-        zip -r deployment.zip . -x ".git/*" ".github/*" ".venv/*" "__pycache__/*" "*.gitignore"
-
-    - name: Debug - Show zip contents
-      run: |
-        echo "📦 Zip file contents:"
-        unzip -l deployment.zip | head -20
-
-    - name: Setup Azure CLI
-      uses: azure/login@v1
+    - name: Setup Python
+      uses: actions/setup-python@v4
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: Debug - List Azure Web Apps
+        python-version: '3.11'
+        
+    - name: Install dependencies
       run: |
-        echo "🌐 Your Azure Web Apps:"
-        az webapp list --query "[].{Name:name, State:state}" --output table
+        python -m pip install --upgrade pip
+        pip install flask==2.3.0 flask-cors==4.0.0 gunicorn==21.2.0
 
-    - name: Deploy using Azure CLI
+    - name: List files for debugging
       run: |
-        az webapp deploy \
-          --name hamzamir-resume-app-gzgwc0d9f2csexgt \
-          --resource-group $(az webapp show --name hamzamir-resume-app-gzgwc0d9f2csexgt --query resourceGroup -o tsv) \
-          --src-path deployment.zip \
-          --type zip
+        ls -la
+        echo "API folder contents:"
+        ls -la api/ || echo "No API folder found"
 
+    - name: Create deployment package
+      run: |
+        echo "Creating deployment package..."
+        zip -r deployment.zip . -x "*.git*" "*.github*" ".venv/*" "__pycache__/*"
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'hamzamir-resume-app-gzgwc0d9f2csexgt'
+        publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+        package: 'deployment.zip'
+        
     - name: Verify deployment
       run: |
-        echo "✅ Deployment attempted"
-        echo "Check https://hamzamir-resume-app-gzgwc0d9f2csexgt.azurewebsites.net"
-=======
-    - name: Zip project files
-      run: zip -r deployment.zip . -x "*.git*" "*.github*" ".venv/*"
-
-    - name: Deploy to Azure via Kudu
-      run: |
-        curl -X POST \
-          -u '$hamzamir-resume-app-gzgwc0d9f2csexgt:${{ secrets.FTP_PASSWORD }}' \
-          https://hamzamir-resume-app-gzgwc0d9f2csexgt.scm.azurewebsites.net/api/zipdeploy \
-          --data-binary @deployment.zip
->>>>>>> 34241762a7f65891109211754af8eb882fab4a3d
+        echo "🎉 Deployment completed successfully!"
+        echo "🌐 Your site: https://hamzamir-resume-app-gzgwc0d9f2csexgt.eastasia-01.azurewebsites.net"
+        echo "⏰ Changes may take 1-2 minutes to appear"
