@@ -1,16 +1,6 @@
 # 🌐 Azure Resume Website
 
-![Azure](https://img.shields.io/badge/Azure-0089D6?style=for-the-badge&logo=microsoft-azure&logoColor=white)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-
 A modern, responsive resume website deployed on Microsoft Azure with a real-time visitor counter. Built as part of the Azure Resume Challenge to demonstrate cloud development skills.
-
-## 🚀 Live Demo
-
-**🌐 Live Website:** [https://hamzamir-resume-app-gzgwc0d9f2csexgt.eastasia-01.azurewebsites.net](https://hamzamir-resume-app-gzgwc0d9f2csexgt.eastasia-01.azurewebsites.net)
 
 ## ✨ Features
 
@@ -21,6 +11,7 @@ A modern, responsive resume website deployed on Microsoft Azure with a real-time
 - ✅ **Fast Loading** - Optimized for performance and SEO
 
 ## 🏗️ Architecture
+```mermaid
 azure-resume-website/
 ├── index.html # Main resume page
 ├── script.js # Visitor counter logic
@@ -31,7 +22,7 @@ azure-resume-website/
 │ └── deploy.yml # GitHub Actions CI/CD
 ├── requirements.txt # Python dependencies
 └── README.md # This file
-
+```
 
 ## 🛠️ Technologies Used
 
@@ -69,11 +60,19 @@ pip install -r requirements.txt
 
 # Open in browser
 open index.html
-
-```bash
+```
 
 ## Author
-Hamza Mir
-GitHub: @hamzamir-uetp
-LinkedIn: [https://www.linkedin.com/in/hamzamir~uetp/]
-Website: https://hamzamir-resume-app-gzgwc0d9f2csexgt.eastasia-01.azurewebsites.net
+-- Hamza Mir
+-- GitHub: @hamzamir-uetp
+-- LinkedIn: [https://www.linkedin.com/in/hamzamir~uetp/]
+-- Website: https://hamzamir-resume-app-gzgwc0d9f2csexgt.eastasia-01.azurewebsites.net
+
+## Acknowledgments
+-- Inspired by the Azure Resume Challenge
+-- Built with Microsoft Azure cloud services
+-- Deployed using GitHub Actions CI/CD
+
+## Demo
+- **🌐 Live URL:** [Resume Website](https://hamzamir-resume-app-gzgwc0d9f2csexgt.eastasia-01.azurewebsites.net)
+- **✅ Status:** Fully deployed and operational.
