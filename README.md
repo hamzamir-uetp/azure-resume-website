@@ -11,6 +11,7 @@ A modern, responsive resume website deployed on Microsoft Azure with a real-time
 - ✅ **Fast Loading** - Optimized for performance and SEO
 
 ## 🏗️ Architecture
+
 ```mermaid
 azure-resume-website/
 ├── index.html # Main resume page
@@ -63,15 +64,15 @@ open index.html
 ```
 
 ## Author
--- Hamza Mir
--- GitHub: @hamzamir-uetp
--- LinkedIn: [https://www.linkedin.com/in/hamzamir~uetp/]
--- Website: https://hamzamir-resume-app-gzgwc0d9f2csexgt.eastasia-01.azurewebsites.net
+- **Hamza Mir**
+- **GitHub:** @hamzamir-uetp
+- **LinkedIn:** [https://www.linkedin.com/in/hamzamir~uetp/]
+- **Website:** https://hamzamir-resume-app-gzgwc0d9f2csexgt.eastasia-01.azurewebsites.net
 
 ## Acknowledgments
--- Inspired by the Azure Resume Challenge
--- Built with Microsoft Azure cloud services
--- Deployed using GitHub Actions CI/CD
+- Inspired by the Azure Resume Challenge
+- Built with Microsoft Azure cloud services
+- Deployed using GitHub Actions CI/CD
 
 ## Demo
 - **🌐 Live URL:** [Resume Website](https://hamzamir-resume-app-gzgwc0d9f2csexgt.eastasia-01.azurewebsites.net)
