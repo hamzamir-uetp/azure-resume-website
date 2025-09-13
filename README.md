@@ -12,7 +12,7 @@ A modern, responsive resume website deployed on Microsoft Azure with a real-time
 
 ## 🏗️ Architecture
 
-```mermaid
+```
 azure-resume-website/
 ├── index.html # Main resume page
 ├── script.js # Visitor counter logic
