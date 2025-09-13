@@ -14,11 +14,48 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+<<<<<<< HEAD
     - name: Validate project structure
+=======
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12.5'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flask==2.3.0 flask-cors==4.0.0 gunicorn==21.2.0
+
+    - name: List files for debugging
+>>>>>>> 43c79f4da18b73fe7caf2922fc01648f37dab802
       run: |
         echo "✅ Project structure is valid"
         echo "📁 Files in repository:"
         ls -la
+<<<<<<< HEAD
         echo "🌐 Your website: https://hamzamir-resume-app-gzgwc0d9f2csexgt.eastasia-01.azurewebsites.net"
         echo "💡 Note: Automatic deployment is disabled to prevent errors"
         echo "📋 To deploy manually, use FTP client or Azure Portal"
+=======
+        echo "API folder contents:"
+        ls -la api/ || echo "No API folder found"
+
+    - name: Create deployment package
+      run: |
+        echo "Creating deployment package..."
+        zip -r deployment.zip . -x "*.git*" "*.github*" ".venv/*" "__pycache__/*"
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'hamzamir-resume-app-gzgwc0d9f2csexgt'
+        publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+        package: 'deployment.zip'
+        
+    - name: Verify deployment
+      run: |
+        echo "🎉 Deployment completed successfully!"
+        echo "🌐 Your site: https://hamzamir-resume-app-gzgwc0d9f2csexgt.eastasia-01.azurewebsites.net"
+        echo "⏰ Changes may take 1-2 minutes to appear"
+>>>>>>> 43c79f4da18b73fe7caf2922fc01648f37dab802
