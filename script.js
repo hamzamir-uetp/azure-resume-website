@@ -53,11 +53,10 @@ class VisitorCounter {
     }
 
     async checkApiExists() {
-    // Simple check - if we've never seen the API work, assume it doesn't exist
-    const apiStatus = localStorage.getItem('apiStatus') || 'not-deployed';
-    console.log('🔍 Debug: apiStatus from localStorage is:', apiStatus); // <-- ADD THIS LINE
-    return apiStatus === 'deployed';
-}
+        // Always return true to force an API check on every page load
+        // The try/catch in updateCounter() will handle failures gracefully
+        return true;
+    }
 
     useLocalCounter(reason) {
         console.log('ℹ️ ' + reason);
