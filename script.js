@@ -28,7 +28,7 @@ class VisitorCounter {
             // Show loading state
             this.counterElement.classList.add('loading');
             
-            const response = await fetch('https://hamza-resume-function-c8fwfvgjf2a5cphv.eastasia-01.azurewebsites.net/api/visitors', {
+            const response = await fetch('https://hamza-resume-function-c8fwfvgjf2a5cphv.eastasia-01.azurewebsites.net/api/visitor_counter', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
