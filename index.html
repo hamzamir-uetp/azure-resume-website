@@ -6,437 +6,580 @@
     <meta http-equiv="Expires" content="0" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hamza Mir | CSE Student </title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Resume | Hamza Mir</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* === GLOBAL STYLES - LIGHT PREMIUM THEME === */
-        :root {
-            --bg-light: #faf9f6;
-            --card-light: #ffffff;
-            --text-primary: #2d3436;
-            --text-secondary: #636e72;
-            --accent-gold: #d4af37;
-            --accent-blue: #2980b9;
-            --accent-teal: #0097a7;
-            --gradient-primary: linear-gradient(135deg, #d4af37 0%, #2980b9 100%);
-            --shadow-subtle: 0 8px 30px rgba(0, 0, 0, 0.08);
-            --border-light: 1px solid rgba(0, 0, 0, 0.06);
-        }
+    /* === PREMIUM DARK THEME VARIABLES === */
+    :root {
+        --bg-primary: #0a0a0f;
+        --bg-secondary: #121218;
+        --bg-tertiary: #1a1a24;
+        --bg-card: rgba(25, 25, 35, 0.8);
+        --text-primary: #f0f0f0;
+        --text-secondary: #a0a0b0;
+        --text-tertiary: #707080;
+        --accent-primary: #7c4dff;
+        --accent-secondary: #00bcd4;
+        --accent-tertiary: #ff4081;
+        --gradient-primary: linear-gradient(135deg, #7c4dff 0%, #00bcd4 100%);
+        --gradient-secondary: linear-gradient(135deg, #ff4081 0%, #7c4dff 100%);
+        --border-radius: 16px;
+        --shadow-primary: 0 10px 30px rgba(0, 0, 0, 0.4);
+        --shadow-secondary: 0 5px 20px rgba(0, 0, 0, 0.3);
+        --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
 
-        body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: var(--text-primary);
-            line-height: 1.7;
-            font-weight: 400;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 2rem 1rem;
-        }
+    body {
+        background: linear-gradient(135deg, #050507 0%, #0e0e15 100%);
+        color: var(--text-primary);
+        line-height: 1.7;
+        font-weight: 400;
+        min-height: 100vh;
+        padding: 0;
+        overflow-x: hidden;
+    }
 
-        .resume-container {
-            max-width: 1200px;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 2rem;
-            margin: 0 auto;
-        }
+    /* === GLASS MORPHISM EFFECTS === */
+    .glass {
+        background: rgba(20, 20, 30, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
 
-        /* === SIDEBAR - ELEGANT PROFILE === */
+    .glass-card {
+        background: rgba(30, 30, 40, 0.6);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-primary);
+        transition: var(--transition);
+    }
+
+    /* === LAYOUT === */
+    .app-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 2rem;
+        position: relative;
+    }
+
+    /* Decorative elements */
+    .bg-decoration {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+    }
+
+    .bg-circle {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.1;
+        filter: blur(40px);
+    }
+
+    .circle-1 {
+        width: 500px;
+        height: 500px;
+        background: var(--accent-primary);
+        top: -200px;
+        right: -200px;
+    }
+
+    .circle-2 {
+        width: 600px;
+        height: 600px;
+        background: var(--accent-secondary);
+        bottom: -300px;
+        left: -300px;
+    }
+
+    /* === SIDEBAR - PREMIUM DESIGN === */
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        position: relative;
+        height: fit-content;
+        position: sticky;
+        top: 2rem;
+    }
+
+    .profile-card {
+        composes: glass-card;
+        padding: 2.5rem;
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .profile-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: var(--gradient-primary);
+    }
+
+    .profile-img-container {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        margin: 0 auto 1.5rem;
+        position: relative;
+        border: 3px solid transparent;
+        background: var(--gradient-primary) border-box;
+        -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        transition: var(--transition);
+    }
+
+    .profile-img-container:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(124, 77, 255, 0.4);
+    }
+
+    .profile-img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--bg-tertiary);
+    }
+
+    .profile-title h1 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .profile-title h2 {
+        font-size: 1.1rem;
+        color: var(--accent-secondary);
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: var(--text-secondary);
+        transition: var(--transition);
+    }
+
+    .contact-item:hover {
+        color: var(--text-primary);
+    }
+
+    .contact-item i {
+        color: var(--accent-primary);
+        width: 20px;
+        font-size: 1.1rem;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    .social-link {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.05);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: var(--transition);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .social-link:hover {
+        background: var(--gradient-primary);
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(124, 77, 255, 0.3);
+    }
+
+    .skills-card {
+        composes: glass-card;
+        padding: 2rem;
+    }
+
+    .card-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--text-primary);
+    }
+
+    .card-title i {
+        color: var(--accent-primary);
+    }
+
+    .skills-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .skill-item {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        color: var(--text-secondary);
+        transition: var(--transition);
+    }
+
+    .skill-item:hover {
+        color: var(--text-primary);
+    }
+
+    .skill-item i {
+        color: var(--accent-secondary);
+    }
+
+    /* === MAIN CONTENT - PREMIUM DESIGN === */
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .content-card {
+        composes: glass-card;
+        padding: 2.5rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .content-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: var(--gradient-primary);
+    }
+
+    .content-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-secondary);
+    }
+
+    .card-header {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+    .card-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        background: var(--gradient-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+    }
+
+    .card-header h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--text-primary);
+    }
+
+    /* Timeline */
+    .timeline {
+        position: relative;
+        padding-left: 2.5rem;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 15px;
+        top: 10px;
+        bottom: 10px;
+        width: 2px;
+        background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary));
+        border-radius: 2px;
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 2.5rem;
+    }
+
+    .timeline-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .timeline-marker {
+        position: absolute;
+        left: -2.5rem;
+        top: 5px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--bg-tertiary);
+        border: 4px solid var(--accent-primary);
+        box-shadow: 0 0 0 3px rgba(124, 77, 255, 0.2);
+        z-index: 2;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.3rem;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+
+    .timeline-content .meta {
+        color: var(--accent-secondary);
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        font-weight: 500;
+    }
+
+    .timeline-content ul {
+        list-style: none;
+        margin-top: 1rem;
+    }
+
+    .timeline-content li {
+        margin-bottom: 0.8rem;
+        padding-left: 1.5rem;
+        position: relative;
+        color: var(--text-secondary);
+    }
+
+    .timeline-content li::before {
+        content: '▸';
+        color: var(--accent-primary);
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+        font-size: 1.2rem;
+        line-height: 1.4;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .skill-category h4 {
+        color: var(--accent-secondary);
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+    }
+
+    .skill-tag {
+        background: rgba(124, 77, 255, 0.1);
+        color: var(--text-primary);
+        padding: 0.6rem 1.2rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        border: 1px solid rgba(124, 77, 255, 0.2);
+        transition: var(--transition);
+        font-weight: 500;
+    }
+
+    .skill-tag:hover {
+        background: var(--gradient-primary);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(124, 77, 255, 0.3);
+    }
+
+    /* Footer */
+    footer {
+        composes: glass-card;
+        text-align: center;
+        margin: 3rem auto 1rem;
+        padding: 2rem;
+        color: var(--text-secondary);
+        font-size: 1rem;
+        max-width: 400px;
+    }
+
+    #counter {
+        font-weight: 700;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    #counter:hover {
+        transform: scale(1.05);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .content-card, .profile-card, .skills-card {
+        animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    .content-card:nth-child(2) { animation-delay: 0.1s; }
+    .content-card:nth-child(3) { animation-delay: 0.2s; }
+    .content-card:nth-child(4) { animation-delay: 0.3s; }
+    .skills-card { animation-delay: 0.4s; }
+
+    /* Responsive Design */
+    @media (max-width: 1100px) {
+        .app-container {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
         .sidebar {
-            background: var(--card-light);
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: var(--shadow-subtle);
-            border: var(--border-light);
-            display: flex;
+            position: static;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .app-container {
+            padding: 1.5rem;
+        }
+        
+        .profile-card, .content-card, .skills-card {
+            padding: 1.8rem;
+        }
+        
+        .card-header {
             flex-direction: column;
-            align-items: center;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .sidebar::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-primary);
-        }
-
-        .profile-img-container {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 3px solid var(--accent-gold);
-            padding: 4px;
-            margin-bottom: 1.5rem;
-            position: relative;
-            background: var(--card-light);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .profile-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--card-light);
-        }
-
-        .profile-title h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .profile-title h2 {
-            font-size: 1.1rem;
-            color: var(--accent-blue);
-            font-weight: 500;
-            margin-bottom: 2rem;
-            letter-spacing: 0.5px;
-        }
-
-        .contact-info, .sidebar-section {
-            width: 100%;
-            margin-bottom: 2rem;
-            text-align: left;
-        }
-
-        .sidebar-section h3 {
-            font-size: 1.2rem;
-            color: var(--accent-gold);
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid rgba(212, 175, 55, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .contact-item, .sidebar-item {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 0.8rem;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .contact-item i, .sidebar-item i {
-            color: var(--accent-teal);
-            width: 20px;
-            font-size: 1.1rem;
-        }
-
-        .social-links {
-            display: flex;
             gap: 1rem;
-            justify-content: center;
-            margin-top: 1rem;
         }
+        
+        .skills-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .profile-title h1 {
+            font-size: 1.8rem;
+        }
+        
+        .card-header h2 {
+            font-size: 1.5rem;
+        }
+    }
 
+    @media (max-width: 480px) {
+        .app-container {
+            padding: 1rem;
+        }
+        
+        .profile-card, .content-card, .skills-card {
+            padding: 1.5rem;
+        }
+        
+        .profile-img-container {
+            width: 140px;
+            height: 140px;
+        }
+        
         .social-link {
             width: 45px;
             height: 45px;
-            border-radius: 50%;
-            background: var(--card-light);
-            border: 2px solid var(--accent-gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent-gold);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
         }
-
-        .social-link:hover {
-            background: var(--accent-gold);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.4);
-            color: white;
-        }
-
-        /* === MAIN CONTENT - ELEGANT CARDS === */
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .content-card {
-            background: var(--card-light);
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: var(--shadow-subtle);
-            border: var(--border-light);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .content-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-primary);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .card-header i {
-            font-size: 1.8rem;
-            color: var(--accent-gold);
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(41, 128, 185, 0.1) 100%);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid var(--accent-gold);
-        }
-
-        .card-header h2 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            position: relative;
-        }
-
-        .card-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background: var(--gradient-primary);
-            border-radius: 2px;
-        }
-
-        /* Timeline Items */
-        .timeline-item {
-            position: relative;
-            padding-left: 3rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 8px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--card-light);
-            border: 4px solid var(--accent-gold);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: 9px;
-            top: 32px;
-            bottom: -25px;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--accent-teal), transparent);
-        }
-
-        .timeline-item:last-child::after {
-            display: none;
-        }
-
-        .timeline-content h3 {
-            font-size: 1.3rem;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .timeline-content .meta {
-            color: var(--accent-blue);
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            font-style: italic;
-            font-weight: 500;
-        }
-
-        .timeline-content ul {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .timeline-content li {
-            margin-bottom: 0.8rem;
-            padding-left: 1.5rem;
-            position: relative;
-            color: var(--text-secondary);
-        }
-
-        .timeline-content li::before {
-            content: '•';
-            color: var(--accent-gold);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-            font-size: 1.5rem;
-            line-height: 1;
-        }
-
-        /* Skills Grid */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .skill-category h4 {
-            color: var(--accent-teal);
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .skill-tag {
-            display: inline-block;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            color: var(--text-primary);
-            padding: 0.6rem 1.2rem;
-            border-radius: 25px;
-            margin: 0.3rem;
-            font-size: 0.9rem;
-            border: 1px solid #dee2e6;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .skill-tag:hover {
-            background: var(--gradient-primary);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-            border-color: var(--accent-gold);
-        }
-
-        /* === FOOTER === */
-        footer {
-            text-align: center;
-            margin-top: 3rem;
-            padding: 2rem;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            background: var(--card-light);
-            border-radius: 15px;
-            box-shadow: var(--shadow-subtle);
-            border: var(--border-light);
-            width: 100%;
-            max-width: 400px;
-        }
-
-        #counter {
-            font-weight: 600;
-            color: var(--accent-gold);
-            font-size: 1.1rem;
-        }
-
-        /* === RESPONSIVE DESIGN === */
-        @media (max-width: 968px) {
-            .resume-container {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .sidebar, .content-card {
-                padding: 2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .sidebar, .content-card {
-                padding: 1.5rem;
-            }
-
-            .profile-title h1 {
-                font-size: 1.8rem;
-            }
-
-            .card-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 0.8rem;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            body {
-                padding: 1rem;
-            }
-        }
+    }
     </style>
 </head>
 <body>
-    <div class="resume-container">
-        <!-- Elegant Sidebar -->
+    <div class="bg-decoration">
+        <div class="bg-circle circle-1"></div>
+        <div class="bg-circle circle-2"></div>
+    </div>
+
+    <div class="app-container">
+        <!-- Sidebar -->
         <aside class="sidebar">
-            <div class="profile-img-container">
-                <img src="picGrey.png" alt="Hamza Mir" class="profile-img">
-            </div>
-            
-            <div class="profile-title">
-                <h1>HAMZA MIR</h1>
-                <h2>Computer Systems Engineering Undergraduate</h2>
-            </div>
+            <div class="profile-card">
+                <div class="profile-img-container">
+                    <img src="picGrey.png" alt="Hamza Mir" class="profile-img">
+                </div>
+                
+                <div class="profile-title">
+                    <h1>HAMZA MIR</h1>
+                    <h2>Computer Systems Engineering Undergraduate</h2>
+                </div>
 
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Abbottabad, KPK, Pakistan</span>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Abbottabad, KPK, Pakistan</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>mirhamzaatd@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+92 342 5292690</span>
+                    </div>
                 </div>
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>mirhamzaatd@gmail.com</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <span>+92 342 5292690</span>
-                </div>
-            </div>
 
-            <div class="sidebar-section">
-                <h3><i class="fab fa-linkedin"></i> Profiles</h3>
                 <div class="social-links">
                     <a href="https://www.linkedin.com/in/hamzamir~uetp" class="social-link" target="_blank">
                         <i class="fab fa-linkedin-in"></i>
@@ -447,39 +590,43 @@
                 </div>
             </div>
 
-            <div class="sidebar-section">
-                <h3><i class="fas fa-code"></i> Technical Skills</h3>
-                <div class="sidebar-item">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Microsoft Office Suite</span>
-                </div>
-                <div class="sidebar-item">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Cloud Computing (Basics) </span>
-                </div>
-                <div class="sidebar-item">
-                    <i class="fas fa-check-circle"></i>
-                    <span>C++ Programming</span>
-                </div>
-                <div class="sidebar-item">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Systems Architecture</span>
-                </div>
-                <div class="sidebar-item">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Team Collaboration</span>
+            <div class="skills-card">
+                <h3 class="card-title"><i class="fas fa-code"></i> Technical Skills</h3>
+                <div class="skills-list">
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Microsoft Office Suite</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Cloud Computing (Basics)</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>C++ Programming</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Systems Architecture</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Team Collaboration</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="sidebar-section">
-                <h3><i class="fas fa-globe"></i> Languages</h3>
-                <div class="sidebar-item">
-                    <i class="fas fa-language"></i>
-                    <span>English (Fluent)</span>
-                </div>
-                <div class="sidebar-item">
-                    <i class="fas fa-language"></i>
-                    <span>Urdu (Native)</span>
+            <div class="skills-card">
+                <h3 class="card-title"><i class="fas fa-globe"></i> Languages</h3>
+                <div class="skills-list">
+                    <div class="skill-item">
+                        <i class="fas fa-language"></i>
+                        <span>English (Fluent)</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-language"></i>
+                        <span>Urdu (Native)</span>
+                    </div>
                 </div>
             </div>
         </aside>
@@ -489,7 +636,9 @@
             <!-- Summary Card -->
             <section class="content-card">
                 <div class="card-header">
-                    <i class="fas fa-user-tie"></i>
+                    <div class="card-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
                     <h2>Professional Summary</h2>
                 </div>
                 <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8;">
@@ -500,28 +649,35 @@
             <!-- Education Card -->
             <section class="content-card">
                 <div class="card-header">
-                    <i class="fas fa-graduation-cap"></i>
+                    <div class="card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
                     <h2>Education</h2>
                 </div>
                 
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>BS in Computer Systems Engineering</h3>
-                        <p class="meta">University of Engineering and Technology, Peshawar, Pakistan</p>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>BS in Computer Systems Engineering</h3>
+                            <p class="meta">University of Engineering and Technology, Peshawar, Pakistan</p>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>FSC (Intermediate), Pre-Engineering</h3>
-                        <p class="meta">The Peace College, Hill Campus, Abbottabad, Pakistan</p>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>FSC (Intermediate), Pre-Engineering</h3>
+                            <p class="meta">The Peace College, Hill Campus, Abbottabad, Pakistan</p>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>SSC (Matriculation), Science</h3>
-                        <p class="meta">Tameer-I-Wattan Public Schools and Colleges, GoE, Pakistan</p>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>SSC (Matriculation), Science</h3>
+                            <p class="meta">Tameer-I-Wattan Public Schools and Colleges, GoE, Pakistan</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -529,26 +685,32 @@
             <!-- Certifications Card -->
             <section class="content-card">
                 <div class="card-header">
-                    <i class="fas fa-certificate"></i>
+                    <div class="card-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
                     <h2>Certifications & Specialization</h2>
                 </div>
                 
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Microsoft 365 Fundamentals Specialization</h3>
-                        <p class="meta">Coursera | 2025</p>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>Microsoft 365 Fundamentals Specialization</h3>
+                            <p class="meta">Coursera | 2025</p>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Microsoft Office Suite Mastery</h3>
-                        <p class="meta">Coursera | 2025</p>
-                        <ul>
-                            <li>Work Smarter with Microsoft PowerPoint</li>
-                            <li>Work Smarter with Microsoft Word</li>
-                            <li>Work Smarter with Microsoft Excel</li>
-                        </ul>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>Microsoft Office Suite Mastery</h3>
+                            <p class="meta">Coursera | 2025</p>
+                            <ul>
+                                <li>Work Smarter with Microsoft PowerPoint</li>
+                                <li>Work Smarter with Microsoft Word</li>
+                                <li>Work Smarter with Microsoft Excel</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -556,19 +718,24 @@
             <!-- Experience Card -->
             <section class="content-card">
                 <div class="card-header">
-                    <i class="fas fa-briefcase"></i>
+                    <div class="card-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
                     <h2>Professional Experience</h2>
                 </div>
                 
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Cloud Computing Intern</h3>
-                        <p class="meta">MLSA UET Peshawar | Remote | 2025</p>
-                        <ul>
-                            <li>Supported staff members in daily tasks, reducing workload burden and enabling focus on high-priority assignments</li>
-                            <li>Gained valuable industry experience by applying learned concepts in relevant work situations</li>
-                            <li>Contributed to positive team environment through collaboration on group projects and presentations</li>
-                        </ul>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>Cloud Computing Intern</h3>
+                            <p class="meta">MLSA UET Peshawar | Remote | 2025</p>
+                            <ul>
+                                <li>Supported staff members in daily tasks, reducing workload burden and enabling focus on high-priority assignments</li>
+                                <li>Gained valuable industry experience by applying learned concepts in relevant work situations</li>
+                                <li>Contributed to positive team environment through collaboration on group projects and presentations</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </section>
